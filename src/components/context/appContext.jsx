@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { useState } from "react";
 
 const AppContext = createContext(null);
@@ -13,8 +13,18 @@ export const useAppContext = () => {
   return context;
 };
 
+// LOCALSTORAGE
+const getInitialState = () => {
+  const favorites = localStorage.getItem("favorites");
+  return favorites ? JSON.parse(favorites) : [];
+};
+
 const AppContextProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(getInitialState);
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   const addToFavorites = (book) => {
     const oldFavorites = [...favorites];

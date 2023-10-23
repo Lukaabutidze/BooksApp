@@ -3,8 +3,11 @@ import booksvg from "../assets/book.svg";
 import { PiSunBold } from "react-icons/pi";
 import { FaRegMoon } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useAppContext } from "./context/appContext";
 
 const Navbar = () => {
+  const { favorites } = useAppContext();
+
   const [theme, setTheme] = useState("fantasy");
 
   const toggleTheme = () => {
@@ -21,7 +24,7 @@ const Navbar = () => {
         <Link to="/">
           <div className="flex justify-start gap-2">
             <img src={booksvg} width="70" alt="" className="" />
-            <h1 className="text-4xl font-bold mt-4  ">BOOKSTACK</h1>
+            <h1 className="text-4xl font-bold mt-4">BOOKSTACK</h1>
           </div>
         </Link>
         <div className="flex items-center">
@@ -36,7 +39,7 @@ const Navbar = () => {
             </Link>
             <Link to="/favorites">
               <h1 className="font-bold text-red-600 text-xl transition-all-ease duration-500 hover:scale-125">
-                Favorites
+                Favorites ({favorites.length})
               </h1>
             </Link>
             <Link to="/contactus">
