@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import booksvg from "../assets/book.svg";
 import { PiSunBold } from "react-icons/pi";
 import { FaRegMoon } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useAppContext } from "./context/appContext";
+import stackofbooks from "../assets/transparentbooks.png";
 
 const Navbar = () => {
   const { favorites } = useAppContext();
@@ -21,34 +21,34 @@ const Navbar = () => {
   return (
     <div className="bg-base-350">
       <nav className="flex justify-between px-20 py-10 items-center shadow-2xl">
-        <Link to="/">
+        <a href="/">
           <div className="flex justify-start gap-2">
-            <img src={booksvg} width="70" alt="" className="" />
-            <h1 className="text-4xl font-bold mt-4">BOOKSTACK</h1>
+            <img src={stackofbooks} width="100" alt="" />
+            <h1 className="text-4xl font-bold mt-7 font-serif">BOOKSTACK</h1>
           </div>
-        </Link>
+        </a>
         <div className="flex items-center">
           <div className="flex items-center space-x-6 gap-4">
             <Link to="/">
               <h1
-                className="font-bold text-xl transition-all-ease duration-500 hover:scale-125 "
+                className="font-bold text-2xl transition-all-ease duration-500 hover:scale-125"
                 href="/"
               >
                 Home
               </h1>
             </Link>
             <Link to="/favorites">
-              <h1 className="font-bold text-red-600 text-xl transition-all-ease duration-500 hover:scale-125">
+              <h1 className="font-bold text-red-600 text-2xl transition-all-ease duration-500 hover:scale-125">
                 Favorites ({favorites.length})
               </h1>
             </Link>
             <Link to="/contactus">
-              <h1 className="font-bold text-xl transition-all-ease duration-500 hover:scale-125">
+              <h1 className="font-bold text-2xl transition-all-ease duration-500 hover:scale-125">
                 Contact
               </h1>
             </Link>
             <Link to="/aboutus">
-              <h1 className="font-bold text-xl transition-all-ease duration-500 hover:scale-125">
+              <h1 className="font-bold text-2xl transition-all-ease duration-500 hover:scale-125">
                 About Us
               </h1>
             </Link>

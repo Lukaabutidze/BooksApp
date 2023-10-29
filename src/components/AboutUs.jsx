@@ -19,16 +19,17 @@ const AboutUs = () => {
                 About Us
               </h2>
               <p class="mb-10 text-base leading-7">
-                Welcome to <span className="font-extrabold">BOOKSTACK</span>,
+                Welcome to{" "}
+                <span className="font-extrabold underline">BOOKSTACK</span>,
                 your destination for literary exploration and discovery. Our
                 passion for books is at the heart of everything we do, and we're
                 thrilled to share it with you. At
-                <span className="font-extrabold"> BOOKSTACK</span>, we believe
-                that books have the power to transport us to new worlds, broaden
-                our horizons, and connect us with the thoughts and experiences
-                of others. Our website is dedicated to connecting book
-                enthusiasts, whether you're an avid reader, a casual book lover,
-                or someone just starting their reading journey.
+                <span className="uppercase"> bookstack</span>, we believe that
+                books have the power to transport us to new worlds, broaden our
+                horizons, and connect us with the thoughts and experiences of
+                others. Our website is dedicated to connecting book enthusiasts,
+                whether you're an avid reader, a casual book lover, or someone
+                just starting their reading journey.
               </p>
             </div>
           </div>

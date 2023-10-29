@@ -39,9 +39,10 @@ const BookList = () => {
           <input
             type="text"
             placeholder="Filter your Search..."
-            className="input border-opacity-70 w-full max-w-xs m-5 font-bold hover:shadow-lg"
+            className="input border-opacity-70  m-5 max-w-xs font-bold  w-full hover:shadow-lg"
             onChange={(e) => setSearch(e.target.value)}
           />
+
           <div className="grid grid-cols-3 h-18 gap-4 mt-2">
             {books
               .filter((book) => {
