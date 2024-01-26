@@ -52,7 +52,7 @@ const Footer = () => {
       </nav>
       <aside>
         <p className="font-bold">
-          Copyright © 2023 - All rights reserved by BookStack.
+          Copyright © 2024 - All rights reserved by BookStack.
         </p>
       </aside>
     </footer>

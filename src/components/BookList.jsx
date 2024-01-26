@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loader from "./Loader";
 import { useAppContext } from "./context/appContext";
+import { Pagination } from "react-bootstrap";
+
+const itemsPerPage = 9; // Number of items to display per page
 
 const BookList = () => {
   const navigate = useNavigate();
@@ -10,6 +13,7 @@ const BookList = () => {
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const { favorites, addToFavorites, removeFromFavorites } = useAppContext();
 
@@ -18,19 +22,32 @@ const BookList = () => {
     return boolean;
   };
 
+  // Fetching books
+
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://example-data.draftbit.com/books?_limit=84")
+      .get("https://example-data.draftbit.com/books?_limit=90")
       .then((res) => {
         setBooks(res.data);
-        // console.log(res.data);
         setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  // Paginate index
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentBooks = books.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo(0, 0); // Scroll to the top
+  };
+
+  // Search filter
 
   return (
     <div className="">
@@ -44,7 +61,7 @@ const BookList = () => {
           />
 
           <div className="grid grid-cols-3 h-18 gap-4 mt-2">
-            {books
+            {currentBooks
               .filter((book) => {
                 return search.toLowerCase() === ""
                   ? book
@@ -89,10 +106,35 @@ const BookList = () => {
                   </div>
                 </div>
               ))}
+
+            {/* Pagination */}
+            {search.toLowerCase() === "" && (
+              <Pagination className="flex justify-center m-10 text-3xl gap-1">
+                {Array.from({
+                  length: Math.ceil(books.length / itemsPerPage),
+                }).map((item, index) => (
+                  <Pagination.Item
+                    key={index + 1}
+                    active={index + 1 === currentPage}
+                    onClick={() => paginate(index + 1)}
+                    className={`mx-2 transition-transform duration-300 ease-in-out transform hover:scale-105 ${
+                      index + 1 === currentPage
+                        ? "bg-gray-800 text-white text-4xl shadow-xl"
+                        : "bg-gray-200 text-gray-700 hover:bg-gray-300 hover:text-gray-800 shadow-xl"
+                    } border border-gray-300 rounded-lg px-3 py-1 cursor-pointer`}
+                    activeLabel=""
+                    style={{ margin: "0 5px" }}
+                  >
+                    {index + 1}
+                  </Pagination.Item>
+                ))}
+              </Pagination>
+            )}
           </div>
         </>
-      )}{" "}
-      : {loading && <Loader />}
+      )}
+
+      {loading && <Loader />}
     </div>
   );
 };

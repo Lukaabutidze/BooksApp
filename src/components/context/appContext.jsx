@@ -13,7 +13,8 @@ export const useAppContext = () => {
   return context;
 };
 
-// LOCALSTORAGE
+// LocalStorage
+
 const getInitialState = () => {
   const favorites = localStorage.getItem("favorites");
   return favorites ? JSON.parse(favorites) : [];
