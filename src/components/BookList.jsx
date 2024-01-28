@@ -5,7 +5,7 @@ import Loader from "./Loader";
 import { useAppContext } from "./context/appContext";
 import { Pagination } from "react-bootstrap";
 
-const itemsPerPage = 9; // Number of items to display per page
+const itemsPerPage = 9; // Number of books to display per page
 
 const BookList = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const BookList = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://example-data.draftbit.com/books?_limit=90")
+      .get("https://example-data.draftbit.com/books?_limit=63")
       .then((res) => {
         setBooks(res.data);
         setLoading(false);
@@ -60,7 +60,7 @@ const BookList = () => {
             onChange={(e) => setSearch(e.target.value)}
           />
 
-          <div className="grid grid-cols-3 h-18 gap-4 mt-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
             {currentBooks
               .filter((book) => {
                 return search.toLowerCase() === ""
@@ -84,7 +84,7 @@ const BookList = () => {
                       alt="#"
                       className="w-72 h-auto transition-all-ease shadow-lg  duration-500 hover:scale-110 cursor-pointer rounded-2xl "
                       onClick={() => navigate(`/books/${book.id}`)}
-                      title="Click to see Details..."
+                      title="Click to see Book Details..."
                     />
                   </div>
                   <div className="flex justify-evenly p-4">
@@ -106,31 +106,31 @@ const BookList = () => {
                   </div>
                 </div>
               ))}
-
-            {/* Pagination */}
-            {search.toLowerCase() === "" && (
-              <Pagination className="flex justify-center m-10 text-3xl gap-1">
-                {Array.from({
-                  length: Math.ceil(books.length / itemsPerPage),
-                }).map((item, index) => (
-                  <Pagination.Item
-                    key={index + 1}
-                    active={index + 1 === currentPage}
-                    onClick={() => paginate(index + 1)}
-                    className={`mx-2 transition-transform duration-300 ease-in-out transform hover:scale-105 ${
-                      index + 1 === currentPage
-                        ? "bg-gray-800 text-white text-4xl shadow-xl"
-                        : "bg-gray-200 text-gray-700 hover:bg-gray-300 hover:text-gray-800 shadow-xl"
-                    } border border-gray-300 rounded-lg px-3 py-1 cursor-pointer`}
-                    activeLabel=""
-                    style={{ margin: "0 5px" }}
-                  >
-                    {index + 1}
-                  </Pagination.Item>
-                ))}
-              </Pagination>
-            )}
           </div>
+
+          {/* Pagination */}
+          {search.toLowerCase() === "" && (
+            <Pagination className="flex justify-center m-10 text-3xl gap-1">
+              {Array.from({
+                length: Math.ceil(books.length / itemsPerPage),
+              }).map((item, index) => (
+                <Pagination.Item
+                  key={index + 1}
+                  active={index + 1 === currentPage}
+                  onClick={() => paginate(index + 1)}
+                  className={`mx-2 transition-transform duration-300 ease-in-out transform hover:scale-105 ${
+                    index + 1 === currentPage
+                      ? "bg-gray-800 text-white text-4xl shadow-xl"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300 hover:text-gray-800 shadow-xl"
+                  } border border-gray-300 rounded-lg px-3 py-1 cursor-pointer`}
+                  activeLabel=""
+                  style={{ margin: "0 5px" }}
+                >
+                  {index + 1}
+                </Pagination.Item>
+              ))}
+            </Pagination>
+          )}
         </>
       )}
 

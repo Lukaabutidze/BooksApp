@@ -24,26 +24,30 @@ const Navbar = () => {
 
   return (
     <div className="bg-base-350">
-      <nav className="flex justify-between px-20 py-10 items-center shadow-2xl">
+      <nav className="flex justify-between px-4 md:px-20 py-4 md:py-10 items-center shadow-2xl">
         <a href="/">
           <div className="flex justify-start gap-2">
-            <img src={stackofbooks} width="100" alt="" />
-            <h1 className="sm:text-4xl  font-bold mt-7 font-serif ">
+            <img src={stackofbooks} width="10%" alt="" />
+            <h1 className="sm:text-2xl md:text-3xl lg:text-4xl font-bold mt-4 lg:mt-4 font-serif ml-2">
               BOOKSTACK
             </h1>
           </div>
         </a>
         {/* Hamburger Menu */}
-        <div onClick={handleNav} className="lg:hidden z-10 flex justify-center">
+        <div onClick={handleNav} className="md:hidden z-10 flex justify-center">
           <FaBars size={35} className="mr-4 cursor-pointer" />
         </div>
-        <div className="items-center hidden lg:flex">
-          <div className="flex items-center space-x-6 gap-2">
+
+        <div
+          className={
+            nav
+              ? "flex flex-col md:flex-row items-center"
+              : "hidden md:flex items-center"
+          }
+        >
+          <div className="flex items-center space-x-3 lg:space-x-6">
             <Link to="/">
-              <h1
-                className="font-bold text-xl transition-all-ease duration-500 hover:scale-125"
-                href="/"
-              >
+              <h1 className="font-bold text-xl transition-all-ease duration-500 hover:scale-125">
                 Home
               </h1>
             </Link>
@@ -82,21 +86,21 @@ const Navbar = () => {
         onClick={handleNav}
         className={
           nav
-            ? "overflow-y-hidden lg:hidden ease-in duration-300 absolute text-gray-300 left-0 top-0 w-full h-screen bg-black/90 px-4 py-7 flex flex-col"
+            ? "overflow-y-hidden lg:hidden ease-in duration-300 absolute text-gray-300 left-0 top-0 w-full h-screen bg-black/95 px-4 py-7 flex flex-col"
             : "absolute top-0 h-screen left-[-100%] ease-in duration-500"
         }
       >
         <ul className="h-full w-full text-center pt-12">
-          <li className="text-2xl py-8">
+          <li className="text-2xl py-4">
             <a href="/">Home</a>
           </li>
-          <li className="text-2xl py-8">
+          <li className="text-2xl py-4">
             <a href="/favorites">Favorites ({favorites.length})</a>
           </li>
-          <li className="text-2xl py-8">
+          <li className="text-2xl py-4">
             <a href="/contactus">Contact</a>
           </li>
-          <li className="text-2xl py-8">
+          <li className="text-2xl py-4">
             <a href="/aboutus">About Us</a>
           </li>
         </ul>
