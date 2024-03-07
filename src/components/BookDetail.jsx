@@ -41,10 +41,12 @@ const BookDetail = () => {
             <p className="text-lg italic">{book.authors}</p>
             <h2 className="text-xl font-semibold shadow w-fit">Genres</h2>
             <p className="text-lg italic">{book.genres}</p>
+            <h2 className="text-xl font-semibold shadow w-fit">Pages</h2>
+            <p className="text-lg italic">{book.num_pages}</p>
           </div>
         </>
       )}
-      : {loading && <Loader />}
+      {loading && <Loader />}
     </div>
   );
 };
