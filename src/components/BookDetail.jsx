@@ -29,12 +29,12 @@ const BookDetail = () => {
       {!loading && (
         <>
           <div>
-            <h2 className="text-2xl font-bold p-2 m-2 shadow-lg w-fit">
+            <h2 className="text-3xl font-bold p-2 m-2 shadow-lg w-fit">
               {book.title}
             </h2>
             <img src={book.image_url} alt="#" className="rounded-2xl" />
           </div>
-          <div>
+          <div className="mt-4">
             <h2 className="text-xl font-semibold shadow w-fit">Description</h2>
             <p className="text-lg italic">{book.description}</p>
             <h2 className="text-xl font-semibold shadow w-fit">Authors</h2>

@@ -2,10 +2,17 @@ import React from "react";
 import { MdOutlineContactMail } from "react-icons/md";
 
 const ContactUs = () => {
+  //
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert("Submitted!");
+  };
+
   return (
     <div className="p-4 sm:p-12">
       <div className="mx-auto w-full max-w-[550px]">
-        <form method="POST">
+        <form method="POST" onSubmit={handleSubmit}>
           <div className="mb-5">
             <div className="flex justify-center mb-6 mt-6 gap-2">
               <h1 className="text-xl sm:text-3xl font-semibold">Contact Us</h1>
@@ -71,7 +78,10 @@ const ContactUs = () => {
             ></textarea>
           </div>
           <div>
-            <button className="hover:shadow-form rounded-md bg-[#6A64F1] py-2 px-4 sm:py-3 sm:px-8 text-sm sm:text-base font-semibold text-white outline-none">
+            <button
+              type="submit"
+              className="hover:shadow-form rounded-md bg-[#6A64F1] py-2 px-4 sm:py-3 sm:px-8 text-sm sm:text-base font-semibold text-white outline-none cursor-pointer"
+            >
               Submit
             </button>
           </div>
